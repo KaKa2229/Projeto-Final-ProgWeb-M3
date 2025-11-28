@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+  // Adiciona a arquitetura binária para evitar erros no Windows
+  binaryTargets   = ["native", "windows"] 
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Produto {
+  id              Int      @id @default(autoincrement()) 
+  fakeStoreId     Int      @unique 
+  titulo          String   @db.VarChar(255)
+  preco           Float
+  descricao       String?  @db.Text
+  categoria       String   @db.VarChar(100)
+  imagem_url      String   @db.VarChar(255)
+  estoque_atual   Int      @default(0) 
+
+  itensPedido ItemPedido[]
+
+  @@map("produtos") 
+}
+
+model Cliente {
+  id              Int      @id @default(autoincrement())
+  nome            String   @db.VarChar(255)
+  email           String   @unique @db.VarChar(255) 
+
+  pedidos         Pedido[]
+
+  @@map("clientes")
+}
+
+model Pedido {
+  id              Int      @id @default(autoincrement())
+  clienteId       Int
+  data_pedido     DateTime @default(now())
+  valor_total     Float
+  status          String   @default("Novo") 
+
+  cliente         Cliente @relation(fields: [clienteId], references: [id])
+  itensPedido     ItemPedido[]
+
+  @@map("pedidos")
+}
+
+model ItemPedido {
+  id              Int      @id @default(autoincrement())
+  pedidoId        Int
+  produtoId       Int
+  quantidade      Int
+  preco_unitario  Float 
+
+  pedido          Pedido @relation(fields: [pedidoId], references: [id])
+  produto         Produto @relation(fields: [produtoId], references: [id])
+
+  @@unique([pedidoId, produtoId]) 
+  @@map("itens_pedido")
+}

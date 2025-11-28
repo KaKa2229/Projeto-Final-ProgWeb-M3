@@ -1,0 +1,68 @@
+# Testes que eu fiz 
+
+#Importar Produtos
+POST http://localhost:3000/api/importar-produtos
+Content-Type: application/json
+
+{}
+
+###
+
+# Listar Produtos
+GET http://localhost:3000/api/produtos
+
+###
+
+# Validar Estoque (Sucesso)
+POST http://localhost:3000/api/estoque/validar
+Content-Type: application/json
+
+{
+    "produtoId": 1, 
+    "quantidade": 5 
+}
+
+###
+
+# Validar Estoque (Falha)
+POST http://localhost:3000/api/estoque/validar
+Content-Type: application/json
+
+{
+    "produtoId": 1, 
+    "quantidade": 51
+}
+
+###
+
+# Criar Pedido (Sucesso)
+POST http://localhost:3000/api/pedidos
+Content-Type: application/json
+
+{
+    "nome": "João Carlos",
+    "email": "jaocarlos@gmail.com",
+    "carrinho": [
+        { "produtoId": 2, "quantidade": 1, "preco": 22.30 },
+        { "produtoId": 4, "quantidade": 3, "preco": 15.40 }
+    ]
+}
+
+###
+
+# Criar Pedido (Falha Estoque)
+POST http://localhost:3000/api/pedidos
+Content-Type: application/json
+
+{
+    "nome": "Cliente Sem Estoque",
+    "email": "falha@teste.com",
+    "carrinho": [
+        { "produtoId": 2, "quantidade": 1000, "preco": 22.30 }
+    ]
+}
+
+###
+
+# Minhas Compras
+GET http://localhost:3000/api/pedidos/cliente/jaocarlos@gmail.com

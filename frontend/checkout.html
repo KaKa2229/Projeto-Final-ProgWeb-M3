@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Loja do Carlão - Checkout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="src/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-purple-custom mb-4 shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Loja do Carlão 💜</a>
+        </div>
+    </nav>
+
+    <main class="container py-5">
+        <div class="row g-5">
+            <div class="col-md-5 col-lg-4 order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-primary">Seu Carrinho</span>
+                    <span class="badge bg-purple-custom rounded-pill" id="cart-count-badge">0</span>
+                </h4>
+                <ul class="list-group mb-3 shadow-sm" id="checkout-cart-list">
+                </ul>
+                <div class="card p-3 border-0 shadow-sm bg-light">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <strong>Total (BRL)</strong>
+                        <strong class="text-primary fs-4" id="checkout-total">R$ 0,00</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3 text-primary">Dados do Cliente</h4>
+                <form class="needs-validation bg-white p-4 rounded shadow-sm" id="form-checkout" novalidate>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="nome" class="form-label fw-bold">Nome Completo</label>
+                            <input type="text" class="form-control" id="nome" placeholder="Digite seu nome completo" required>
+                            <div class="invalid-feedback">
+                                O nome é obrigatório para o envio.
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="email" class="form-label fw-bold">E-mail <span class="text-muted fw-normal">(Para envio do comprovante)</span></label>
+                            <input type="email" class="form-control" id="email" placeholder="voce@exemplo.com" required>
+                            <div class="invalid-feedback">
+                                Por favor, insira um e-mail válido.
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <button class="w-100 btn btn-primary btn-lg" type="submit" id="btn-finalizar">
+                        Finalizar Compra
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="modalSucesso" tabindex="-1" data-bs-backdrop="static" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title fw-bold">Pedido Realizado com Sucesso! 🎉</h5>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <p class="fs-5">Obrigado pela preferência, <span id="sucesso-nome-cliente" class="fw-bold text-primary"></span>!</p>
+                    <div class="alert alert-light border d-inline-block">
+                        <p class="mb-0 small text-uppercase text-muted">Número do Pedido</p>
+                        <strong id="sucesso-pedido-id" class="fs-2 text-dark">#0</strong>
+                    </div>
+                    <p class="text-muted mt-3">Enviamos os detalhes para o seu e-mail.</p>
+                </div>
+                <div class="modal-footer justify-content-center bg-light">
+                    <a href="index.html" class="btn btn-primary">Voltar à Loja</a>
+                    <a href="meuspedidos.html" class="btn btn-outline-secondary">Ver Meus Pedidos</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/js/main.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

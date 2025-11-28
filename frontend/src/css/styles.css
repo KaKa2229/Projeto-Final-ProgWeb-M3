@@ -1,0 +1,73 @@
+
+:root {
+    --main-purple: #4a148c;   
+    --btn-purple: #7b1fa2;    
+    --btn-hover: #4a0072;    
+    --accent-yellow: #ffd740; 
+}
+
+.bg-purple-custom {
+    background-color: var(--main-purple) !important;
+}
+
+.btn-primary {
+    background-color: var(--btn-purple);
+    border-color: var(--btn-purple);
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: var(--btn-hover) !important;
+    border-color: var(--btn-hover) !important;
+}
+
+.btn-outline-primary {
+    color: var(--btn-purple);
+    border-color: var(--btn-purple);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--btn-purple);
+    border-color: var(--btn-purple);
+    color: white;
+}
+
+.text-primary {
+    color: var(--btn-purple) !important;
+}
+
+.badge-warning-custom {
+    background-color: var(--accent-yellow);
+    color: #3e2723;
+    font-weight: bold;
+}
+
+.list-group-item {
+    color: var(--main-purple); 
+    border-color: #dee2e6;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.list-group-item:hover {
+    background-color: #f3e5f5; 
+    color: var(--btn-hover);
+}
+
+.list-group-item.active {
+    background-color: var(--main-purple) !important;
+    border-color: var(--main-purple) !important;
+    color: white !important;
+}
+
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    border: none;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
